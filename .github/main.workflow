@@ -1,8 +1,9 @@
-workflow "New workflow" {
+workflow "on push" {
   on = "push"
-  resolves = ["GitHub Action for Docker"]
+  resolves = ["GitHub Action for cpplint"]
 }
 
-action "GitHub Action for Docker" {
-  uses = "https://hub.docker.com/r/unibeautify/clang-format/"
+action "GitHub Action for cpplint" {
+  uses = "cclauss/GitHub-Action-for-cpplint@master"
+  args = "cpplint --recursive ."
 }
