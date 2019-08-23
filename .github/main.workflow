@@ -1,4 +1,4 @@
-name: "My Fancy Workflow"
+name: My Fancy Workflow
 on: [push]
 
 jobs:
