@@ -12,7 +12,6 @@ struct log_t
 
 	bool after(request& req, response& res) {
 		std::cout << "after log" << std::endl;
-		res.add_header("aaaa", "bbcc");
 		return true;
 	}
 };
@@ -77,7 +76,6 @@ int main() {
 
 	person p{ 2 };
 	server.set_http_handler<GET, POST>("/a", &person::foo, enable_cache{ false }, log_t{});
-//	server.set_http_handler<GET, POST>("/b", &person::foo1, log_t{}, enable_cache{ false });
 
     server.set_http_handler<GET, POST>("/string", [](request& req, response& res) {
         res.render_string(std::to_string(std::time(nullptr)));
@@ -97,6 +95,10 @@ int main() {
 		session->set_max_age(-1);
 		res.set_status_and_content(status_type::ok, "login");
 	},enable_cache{false});
+
+    server.set_http_handler<GET, POST>("/echo", [](request& req, response& res) {
+		res.render_string("ok");
+    },enable_cache{true});
 
 	server.set_http_handler<GET, POST>("/islogin", [](request& req, response& res) {
 		auto ptr = req.get_session();
