@@ -1,9 +1,12 @@
-workflow "on push" {
-  on = "push"
-  resolves = ["GitHub Action for cpplint"]
-}
+name "My Fancy Workflow"
+on = [push]
 
-action "GitHub Action for cpplint" {
-  uses = "cclauss/GitHub-Action-for-cpplint@master"
-  args = "cpplint --recursive ."
-}
+jobs:
+  lint:
+    # Job name is Greeting
+    name: Lint
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+    - uses: "cclauss/GitHub-Action-for-cpplint@master"
+    - run: "cpplint --recursive ."
