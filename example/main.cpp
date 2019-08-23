@@ -12,7 +12,6 @@ struct log_t
 
 	bool after(request& req, response& res) {
 		std::cout << "after log" << std::endl;
-		res.add_header("aaaa", "bbcc");
 		return true;
 	}
 };
