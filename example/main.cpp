@@ -98,6 +98,10 @@ int main() {
 		res.set_status_and_content(status_type::ok, "login");
 	},enable_cache{false});
 
+    server.set_http_handler<GET, POST>("/echo", [](request& req, response& res) {
+		res.render_string("ok");
+    },enable_cache{true});
+
 	server.set_http_handler<GET, POST>("/islogin", [](request& req, response& res) {
 		auto ptr = req.get_session();
 		auto session = ptr.lock();
