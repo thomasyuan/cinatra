@@ -1,5 +1,5 @@
-name "My Fancy Workflow"
-on = [push]
+name: "My Fancy Workflow"
+on: [push]
 
 jobs:
   lint:
